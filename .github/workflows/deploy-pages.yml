@@ -3,7 +3,8 @@ name: Deploy Angular app to GitHub Pages
 on:
   push:
     branches:
-      - main    # change if your default branch is not `main`
+      - dev    # deploy when pushing to `dev` branch
+  workflow_dispatch: # allow manual dispatch from Actions UI
 
 permissions:
   contents: read
@@ -39,7 +40,7 @@ jobs:
           fi
 
       - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact
         with:
           path: ./dist
 
@@ -48,4 +49,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages

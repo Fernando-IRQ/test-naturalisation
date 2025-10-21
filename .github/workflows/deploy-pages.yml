@@ -40,7 +40,7 @@ jobs:
           fi
 
       - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact
+        uses: actions/upload-pages-artifact@V4
         with:
           path: ./dist
 
@@ -49,4 +49,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages
+        uses: actions/deploy-pages@V4

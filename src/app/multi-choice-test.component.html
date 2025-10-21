@@ -1,0 +1,57 @@
+<div class="multi-choice-test">
+  <div class="layout">
+    <aside class="sidebar" role="complementary" aria-label="Score">
+      <div class="score">
+        <div class="score-item correct">
+          <div class="score-num">{{ correctCount }}</div>
+          <div class="score-label">Correct</div>
+        </div>
+        <div class="score-item wrong">
+          <div class="score-num">{{ incorrectCount }}</div>
+          <div class="score-label">Incorrect</div>
+        </div>
+      </div>
+      <div class="q-progress">Question {{ current + 1 }} / {{ questions.length }}</div>
+    </aside>
+
+    <section class="content" role="main">
+      <div *ngIf="questions.length; else noQuestions">
+        <div class="question-meta" *ngIf="questions[current]?.thematique || questions[current]?.notions">
+          <div class="meta-title">{{ questions[current]?.thematique }}</div>
+          <div class="meta-subtitle">{{ questions[current]?.notions }}</div>
+        </div>
+        <p class="question" aria-live="polite" aria-atomic="true">{{ questions[current]?.question }}</p>
+
+        <ul class="options">
+          <li *ngFor="let option of choices">
+            <button
+              type="button"
+              class="option-btn"
+              [disabled]="selected !== null"
+              (click)="selectOption(option)"
+              [attr.aria-pressed]="selected === option ? 'true' : 'false'"
+              [class.option-correct]="selected && option === questions[current].answer"
+              [class.option-wrong]="selected && option === selected && selected !== questions[current].answer"
+            >
+              {{ option }}
+            </button>
+          </li>
+        </ul>
+
+        <div class="controls">
+          <button type="button" class="btn btn-primary" (click)="next()" [disabled]="selected === null && !finished">Suivant</button>
+          <button type="button" class="btn btn-secondary" (click)="restart()">Recommencer</button>
+        </div>
+
+        <div *ngIf="finished" class="summary" aria-live="polite">Test terminé. Correct: {{ correctCount }}, Incorrect: {{ incorrectCount }}</div>
+
+        <!-- live feedback for screen readers -->
+        <div class="visually-hidden" aria-live="polite">{{ selected ? (selected === questions[current].answer ? 'Bonne réponse' : 'Mauvaise réponse') : '' }}</div>
+      </div>
+
+      <ng-template #noQuestions>
+        <p>Aucune question disponible.</p>
+      </ng-template>
+    </section>
+  </div>
+</div>

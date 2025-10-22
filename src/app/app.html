@@ -1,4 +1,15 @@
 <div class="container">
   <h1>Test de préparation à l'examen civique </h1>
-  <app-multi-choice-test></app-multi-choice-test>
+  <div *ngIf="mode === 'start'">
+    <p class="start-instruction">Choisissez le type de test :</p>
+    <div class="start-actions">
+      <button class="btn btn-primary" (click)="startQuick()">Test rapide (10 questions)</button>
+      <button class="btn btn-secondary" (click)="startFull()">Test complet</button>
+    </div>
+  </div>
+
+  <div *ngIf="mode === 'test'">
+    <button class="btn back-btn" (click)="backToStart()">← Retour</button>
+    <app-multi-choice-test [maxQuestions]="selectedMaxQuestions"></app-multi-choice-test>
+  </div>
 </div>

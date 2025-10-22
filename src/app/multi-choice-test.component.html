@@ -20,7 +20,13 @@
           <div class="meta-title">{{ questions[current]?.thematique }}</div>
           <div class="meta-subtitle">{{ questions[current]?.notions }}</div>
         </div>
-        <p class="question" aria-live="polite" aria-atomic="true">{{ questions[current]?.question }}</p>
+          <!-- Progress track (use a real element so width updates reliably) -->
+          <div class="question">
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-fill" [style.width.%]="progressPercent"></div>
+            </div>
+            <p aria-live="polite" aria-atomic="true">{{ questions[current]?.question }}</p>
+          </div>
 
         <ul class="options">
           <li *ngFor="let option of choices">

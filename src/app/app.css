@@ -1,35 +1,86 @@
-/* Restore styles moved from inline HTML */
+/* Restore styles moved from inline HTML (compact layout) */
+/* Ensure the page can always scroll vertically when content overflows */
+html, body, app-root {
+  height: auto;
+  min-height: 100%;
+  overflow-y: auto;
+}
+
+/* Restore styles moved from inline HTML (compact layout) */
 body {
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
-  padding: 2rem;
+  padding: 1rem;
   background: #f7f7f8;
   color: #111;
 }
 
+/* Make app-root render as a block so it participates normally in document flow */
+app-root { display: block; }
+
 .container {
   max-width: 760px;
-  margin: 0 auto;
+  margin: 0.5rem auto;
   background: white;
-  padding: 1.25rem 1.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  box-shadow: 0 6px 14px rgba(17,17,17,0.06);
+}
+
+/* Start screen centering and buttons (compact) */
+.start-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center; /* center horizontally */
+  align-items: center;
+  margin: 1.25rem 0;
+}
+
+.start-actions .btn {
+  min-width: 170px;
+  padding: 0.6rem 0.8rem;
   border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(17,17,17,0.06);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.start-instruction {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-size: 1rem;
+  color: #0f172a;
+  margin: 0.6rem 0 0.4rem 0;
+  font-weight: 700;
+}
+
+/* Make both start buttons the same color and look symmetrical */
+.start-actions .btn.btn-primary,
+.start-actions .btn.btn-secondary {
+  background: #0b7285; /* teal-ish */
+  color: white;
+  border: none;
+  box-shadow: 0 6px 18px rgba(11,114,133,0.12);
+}
+
+/* On small screens, stack buttons vertically while keeping symmetry */
+@media (max-width: 520px) {
+  .start-actions { flex-direction: column; gap: 0.5rem }
+  .start-actions .btn { min-width: 100%; }
 }
 
 h1 { margin: 0 0 0.5rem 0 }
 
-/* Duolingo-inspired main title styling for .container h1 */
+/* Compact title styling */
 .container h1 {
   font-family: 'Merriweather', Georgia, serif;
-  font-size: 1.48rem;
+  font-size: 1.15rem;
   line-height: 1.05;
-  margin: 0 0 0.9rem 0;
+  margin: 0 0 0.6rem 0;
   color: #04263a; /* deep navy */
   font-weight: 800;
   position: relative;
-  padding: 10px 16px 10px 48px; /* room for flag */
-  border-radius: 12px;
-  background: linear-gradient(180deg, rgba(6,48,90,0.03), rgba(255,255,255,0.02));
-  box-shadow: 0 8px 22px rgba(2,24,50,0.06);
+  padding: 6px 10px 6px 40px; /* room for flag */
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(6,48,90,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 6px 16px rgba(2,24,50,0.05);
   display: inline-block;
 }
 
@@ -41,7 +92,7 @@ h1 { margin: 0 0 0.5rem 0 }
   top: 50%;
   transform: translateY(-50%);
   width: 10px;
-  height: 44px;
+  height: 34px;
   border-radius: 6px;
   background: linear-gradient(180deg, #0055A4 0%, #0055A4 33%, #FFFFFF 33%, #FFFFFF 66%, #EF4135 66%, #EF4135 100%);
   box-shadow: 0 6px 16px rgba(2,48,100,0.06);
@@ -62,26 +113,26 @@ h1 { margin: 0 0 0.5rem 0 }
 /* Responsive adjustments for smaller screens */
 @media (max-width: 640px) {
   .container h1 {
-    font-size: 1.18rem;
-    padding-left: 40px;
+    font-size: 1.02rem;
+    padding-left: 36px;
   }
-  .container h1::before { height: 34px; width: 8px; left: 12px }
+  .container h1::before { height: 30px; width: 8px; left: 12px }
 }
 
-.meta { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 1rem }
+.meta { display: flex; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem }
 
-.question { font-size: 1.125rem; margin: 0 0 1rem 0 }
+.question { font-size: 1.05rem; margin: 0 0 0.75rem 0 }
 
-.options { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem }
+.options { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.4rem }
 
 .option-btn {
   text-align: left;
-  padding: 0.6rem 0.75rem;
+  padding: 0.45rem 0.6rem;
   border-radius: 6px;
   border: 1px solid #ddd;
   background: #fff;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .option-btn:disabled { cursor: default; opacity: 0.9 }
@@ -89,16 +140,20 @@ h1 { margin: 0 0 0.5rem 0 }
 .option-correct { background: #e6ffed; border-color: #7be19a }
 .option-wrong { background: #fff0f0; border-color: #ff8b8b }
 
-.controls { margin-top: 1rem; display: flex; gap: 0.5rem; align-items: center }
+.controls { margin-top: 0.6rem; display: flex; gap: 0.4rem; align-items: center }
 
-.btn { padding: 0.5rem 0.8rem; border-radius: 6px; border: 0; cursor: pointer }
+.btn { padding: 0.4rem 0.6rem; border-radius: 6px; border: 0; cursor: pointer }
 .btn-primary { background: #0070f3; color: white }
 .btn-secondary { background: #efefef }
 
-.counters { font-size: 0.95rem }
-.small { font-size: 0.9rem; color: #444 }
+.counters { font-size: 0.9rem }
+.small { font-size: 0.85rem; color: #444 }
 
-/* Component-specific wrapper */
-.multi-choice-test { }
+/* wrapper styles for multi-choice-test (kept intentionally minimal) */
+.multi-choice-test { padding-top: 0.25rem; }
 
-.summary { margin-top: 0.75rem }
+.summary { margin-top: 0.6rem }
+
+/* smaller back button and compact top spacing */
+.back-btn { padding: 0.22rem 0.5rem; font-size: 0.9rem; margin-bottom: 0.4rem; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; color: #0f172a; font-weight: 600; background: transparent; border: 0 }
+

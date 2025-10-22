@@ -12,6 +12,10 @@ import { MultiChoiceTestComponent } from './multi-choice-test.component';
 export class App {
   protected readonly title = signal('test-naturalization');
 
+  // UI state: 'start' shows the choice screen, 'test' shows the quiz
+  mode: 'start' | 'test' = 'start';
+  selectedMaxQuestions: number | null = null;
+
   // pills used in the app.html placeholder
   pills = [
     { title: 'Angular Docs', link: 'https://angular.io' },
@@ -21,5 +25,20 @@ export class App {
 
   trackByTitle(_index: number, item: { title: string }) {
     return item.title;
+  }
+
+  startQuick() {
+    this.selectedMaxQuestions = 10;
+    this.mode = 'test';
+  }
+
+  startFull() {
+    this.selectedMaxQuestions = null;
+    this.mode = 'test';
+  }
+
+  backToStart() {
+    this.mode = 'start';
+    this.selectedMaxQuestions = null;
   }
 }

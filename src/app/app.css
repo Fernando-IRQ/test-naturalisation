@@ -26,6 +26,23 @@ app-root { display: block; }
   box-shadow: 0 6px 14px rgba(17,17,17,0.06);
 }
 
+/* header row: title and info button */
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+.info-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.05rem;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+.info-btn:hover { background: rgba(6,48,90,0.04); }
+
 /* Start screen centering and buttons (compact) */
 .start-actions {
   display: flex;

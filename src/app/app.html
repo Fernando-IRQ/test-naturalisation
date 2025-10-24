@@ -1,5 +1,8 @@
 <div class="container">
-  <h1>Test de préparation à l'examen civique </h1>
+  <div class="header-row">
+    <h1>Test de préparation à l'examen civique</h1>
+    <button class="info-btn" aria-label="Informations" (click)="showDisclaimer()">ⓘ</button>
+  </div>
   <div *ngIf="mode === 'start'">
     <p class="start-instruction">Choisissez le type de test :</p>
     <div class="start-actions">

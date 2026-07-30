@@ -1,19 +1,20 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MultiChoiceTestComponent } from './multi-choice-test.component';
+import { GeographyExplorerComponent } from './geography-explorer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, MultiChoiceTestComponent],
+  imports: [CommonModule, MultiChoiceTestComponent, GeographyExplorerComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
 export class App {
   protected readonly title = signal('test-naturalization');
 
-  // UI state: 'start' shows the choice screen, 'test' shows the quiz
-  mode: 'start' | 'test' = 'start';
+  // UI state: 'start' shows the choice screen, 'test' shows the quiz, 'geo' shows the map
+  mode: 'start' | 'test' | 'geo' = 'start';
   selectedMaxQuestions: number | null = null;
 
   // pills used in the app.html placeholder
@@ -35,6 +36,10 @@ export class App {
   startFull() {
     this.selectedMaxQuestions = null;
     this.mode = 'test';
+  }
+
+  startGeography() {
+    this.mode = 'geo';
   }
 
   backToStart() {

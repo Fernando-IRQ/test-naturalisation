@@ -1,0 +1,19 @@
+<div class="geo-wrapper">
+  <p class="geo-instruction">
+    Zoomez pour faire apparaître les noms des départements et des fleuves. Les tracés des fleuves et les massifs
+    montagneux restent toujours visibles.
+  </p>
+
+  <div class="geo-map" #mapContainer></div>
+
+  <p *ngIf="loadError" class="geo-error">
+    Impossible de charger les données géographiques. Vérifiez votre connexion internet et réessayez.
+  </p>
+
+  <div class="geo-legend">
+    <span class="legend-item"><span class="swatch swatch-region"></span>Régions</span>
+    <span class="legend-item"><span class="swatch swatch-department"></span>Départements (dès le zoom 8)</span>
+    <span class="legend-item"><span class="swatch swatch-river"></span>Fleuves (noms dès le zoom 8)</span>
+    <span class="legend-item"><span class="swatch swatch-mountain">▲</span>Massifs montagneux</span>
+  </div>
+</div>

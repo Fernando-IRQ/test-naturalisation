@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [class.container-wide]="mode === 'geo'">
   <div class="header-row">
     <h1>Test de préparation à l'examen civique</h1>
     <button class="info-btn" aria-label="Informations" (click)="showDisclaimer()">ⓘ</button>
@@ -8,11 +8,17 @@
     <div class="start-actions">
       <button class="btn btn-primary" (click)="startQuick()">Test rapide (10 questions)</button>
       <button class="btn btn-secondary" (click)="startFull()">Test complet</button>
+      <button class="btn btn-secondary" (click)="startGeography()">Géographie de la France</button>
     </div>
   </div>
 
   <div *ngIf="mode === 'test'">
     <button class="btn back-btn" (click)="backToStart()">← Retour</button>
     <app-multi-choice-test [maxQuestions]="selectedMaxQuestions"></app-multi-choice-test>
+  </div>
+
+  <div *ngIf="mode === 'geo'">
+    <button class="btn back-btn" (click)="backToStart()">← Retour</button>
+    <app-geography-explorer></app-geography-explorer>
   </div>
 </div>

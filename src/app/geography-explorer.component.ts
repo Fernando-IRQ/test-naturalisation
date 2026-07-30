@@ -32,7 +32,7 @@ const RIVER_TEXT_OPTIONS = {
   repeat: true,
   offset: -6,
   attributes: {
-    fill: '#0d4d7a',
+    fill: '#add8e6',
     'font-size': '12',
     'font-weight': '600',
     stroke: '#fbfbf9',
@@ -222,7 +222,7 @@ export class GeographyExplorerComponent implements AfterViewInit, OnDestroy {
       };
 
       L.geoJSON(orientedRivers, {
-        style: { color: '#1c6fae', weight: 3, opacity: 0.85 }
+        style: { color: '#add8e6', weight: 1.5, opacity: 0.7 }
       }).addTo(map);
 
       // A separate, smoothed and invisible copy of each river purely to anchor the
